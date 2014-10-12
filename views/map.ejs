@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <style>
+      #map-canvas {
+        width: 800px;
+        height: 600px;
+      }
+    </style>
+    <head>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBik8dTdd1alQ6OKF920dbiHM6rSkjPtAU"></script>
+    </head>
+    <body>
+        <div id="map-canvas"></div>
+        <script type="text/javascript" src="/javascripts/map.js"></script>
+        <script type="text/javascript">
+            // TERRIBLE hack to get around the fact that 
+            // I don't know how to write helpers in EJS
+            var shapes = [];
+            <% shapes.forEach(function(shapePoints) { %>
+                var points = [];
+                <% shapePoints.forEach(function(point) { %>
+                    points.push([<%= point[0] %>, <%= point[1] %>]);
+                <% }); %>
+                shapes.push(points);
+            <% }); %>
+            var start = [<%= start.latitude %>, <%= start.longitude %>];
+            var end = [<%= end.latitude %>, <%= end.longitude %>];
+            var center = [<%= center.latitude %>, <%= center.longitude %>];
+            handleData(start, center, end, shapes);
+        </script>
+    </body>
+</html>
