@@ -8,6 +8,9 @@ Only works within the state of Texas.
 Instructions: 
 
 git clone
+
 npm start
+
 visit localhost:3000
+
 enter two addresses in texas
